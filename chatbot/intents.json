@@ -1,0 +1,55 @@
+{
+  "intents": [
+    {
+      "tag": "greeting",
+      "patterns": ["hello", "hi", "hey", "good morning", "good evening"],
+      "responses": ["Hello! I am your AI linguistic chatbot. Ask me a question or use the microphone."]
+    },
+    {
+      "tag": "project_overview",
+      "patterns": ["what is this project", "explain ai linguistic chatbot", "project overview", "tell me about this chatbot"],
+      "responses": ["This project is a browser-based chatbot that understands text queries, supports voice interaction, and combines fixed intent replies with AI fallback."]
+    },
+    {
+      "tag": "problem_statement",
+      "patterns": ["what problem does it solve", "problem statement", "why chatbot", "gap in existing bots"],
+      "responses": ["Keyword-only bots are rigid and text-only systems reduce accessibility. This chatbot improves interaction by combining controlled intent replies, AI fallback, and voice support."]
+    },
+    {
+      "tag": "objectives",
+      "patterns": ["what are the objectives", "project goals", "main goal", "key objectives"],
+      "responses": ["The main goal is to build an intelligent chatbot that identifies user intent, gives meaningful replies, supports voice input and output, and uses Gemini for unmatched queries."]
+    },
+    {
+      "tag": "technology_stack",
+      "patterns": ["technology stack", "which technologies are used", "tools used", "frontend backend ai voice"],
+      "responses": ["The stack includes HTML, CSS, JavaScript, Python Flask, JSON intents, Gemini API, browser speech recognition, and speech synthesis."]
+    },
+    {
+      "tag": "architecture",
+      "patterns": ["system architecture", "how does it work", "chatbot flow", "methodology"],
+      "responses": ["The flow is simple: user input goes to the Flask API, the engine checks JSON intents, Gemini answers unmatched questions when configured, and the UI returns text plus optional spoken output."]
+    },
+    {
+      "tag": "voice",
+      "patterns": ["voice input", "speech recognition", "text to speech", "spoken replies", "microphone"],
+      "responses": ["Voice input is handled in the browser with speech recognition. Spoken replies use speech synthesis so users can listen to the chatbot response."]
+    },
+    {
+      "tag": "timeline",
+      "patterns": ["project timeline", "agile timeline", "schedule", "monthly plan"],
+      "responses": ["The proposed timeline starts with research and requirements, then conversation design, Flask development, Gemini integration, UI refinement, voice module, testing, report, and demo."]
+    },
+    {
+      "tag": "deliverables",
+      "patterns": ["expected outcomes", "deliverables", "future scope", "what will be delivered"],
+      "responses": ["The deliverables include a responsive AI linguistic chatbot web app, voice input and spoken response, testing results, project report, and demo."]
+    },
+    {
+      "tag": "goodbye",
+      "patterns": ["bye", "goodbye", "see you", "thank you"],
+      "responses": ["Thank you! Have a great day."]
+    }
+  ]
+}
+

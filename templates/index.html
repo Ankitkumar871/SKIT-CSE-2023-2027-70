@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Linguistic Chatbot</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+  <main class="shell">
+    <section class="intro">
+      <p class="eyebrow">AI + NLP + Speech Web Application</p>
+      <h1>AI Linguistic Chatbot</h1>
+      <p class="summary">A responsive chatbot that understands natural-language queries and supports both text and voice interaction.</p>
+      <div class="stack">
+        <span>Flask</span>
+        <span>JSON intents</span>
+        <span>Gemini fallback</span>
+        <span>Voice UI</span>
+      </div>
+    </section>
+
+    <section class="chat-panel" aria-label="Chatbot">
+      <header class="chat-header">
+        <div>
+          <p class="status-dot"><span></span> Online</p>
+          <h2>Project Assistant</h2>
+        </div>
+        <button class="icon-button" id="speakToggle" type="button" title="Toggle spoken replies" aria-label="Toggle spoken replies">🔊</button>
+      </header>
+
+      <div class="messages" id="messages" aria-live="polite"></div>
+
+      <form class="composer" id="chatForm">
+        <button class="icon-button mic" id="micButton" type="button" title="Use voice input" aria-label="Use voice input">🎙</button>
+        <input id="messageInput" type="text" autocomplete="off" placeholder="Ask about objectives, stack, architecture, voice..." required>
+        <button class="send" type="submit">Send</button>
+      </form>
+    </section>
+  </main>
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
+
