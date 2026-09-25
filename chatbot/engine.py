@@ -6,7 +6,7 @@ import urllib.error
 import urllib.request
 from dataclasses import dataclass
 from difflib import SequenceMatcher
-from pathlib import Path
+from pathlib import path
 
 
 TOKEN_RE = re.compile(r"[a-z0-9]+")
