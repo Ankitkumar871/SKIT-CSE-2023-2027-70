@@ -165,3 +165,73 @@ function clearChat() {
   );
 
 }
+function setupSpeechRecognition() {
+  const SpeechRecognition =
+    window.SpeechRecognition || window.webkitSpeechRecognition;
+
+  if (!SpeechRecognition) {
+    micButton.disabled = true;
+    micButton.title = "Speech recognition is not supported";
+    return;
+  }
+
+  recognition = new SpeechRecognition();
+  recognition.lang = "en-US";
+  recognition.interimResults = false;
+  recognition.maxAlternatives = 1;
+
+  recognition.addEventListener("start", () => {
+    micButton.classList.add("listening");
+    micButton.textContent = "🎙️";
+    input.placeholder = "Listening...";
+    input.disabled = true;
+  });
+
+  recognition.addEventListener("end", () => {
+    micButton.classList.remove("listening");
+    micButton.textContent = "🎤";
+    input.placeholder = "Type your message...";
+    input.disabled = false;
+    input.focus();
+  });
+
+  recognition.addEventListener("result", (event) => {
+    const transcript = event.results[0][0].transcript.trim();
+
+    if (transcript) {
+      input.value = transcript;
+      sendMessage(transcript);
+    }
+  });
+
+  recognition.addEventListener("error", (event) => {
+    console.error("Speech recognition error:", event.error);
+
+    if (event.error === "not-allowed") {
+      addMessage(
+        "Microphone permission was denied. Please allow microphone access.",
+        "bot",
+        "voice error"
+      );
+    } else if (event.error === "no-speech") {
+      addMessage(
+        "I could not hear anything. Please try speaking again.",
+        "bot",
+        "voice error"
+      );
+    }
+  });
+}
+
+micButton.addEventListener("click", () => {
+  if (!recognition) return;
+
+  try {
+    recognition.start();
+  } catch (error) {
+    console.log("Recognition already running.");
+  }
+});
+
+setupSpeechRecognition();
+
