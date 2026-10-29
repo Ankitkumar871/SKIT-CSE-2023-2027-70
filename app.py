@@ -1,3 +1,4 @@
+
 from flask import Flask, render_template, request, jsonify
 from chatbot.engine import ChatbotEngine
 from database import (
@@ -33,10 +34,31 @@ def chat():
             "error": "Please enter a message."
         }), 400
 
-    result = engine.reply(message)
+    # Get recent conversation context from the frontend.
+    history = data.get("history", [])
+
+    if not isinstance(history, list):
+        history = []
+
+    # Keep only valid user/model messages.
+    history = [
+        {
+            "role": item["role"],
+            "text": item["text"][:3000]
+        }
+        for item in history[-10:]
+        if isinstance(item, dict)
+        and item.get("role") in ("user", "model")
+        and isinstance(item.get("text"), str)
+        and item["text"].strip()
+    ]
+
+    # Generate a reply using intent matching or Gemini.
+    result = engine.reply(message, history)
 
     language = detect_language(message)
 
+    # Save the exchange in the existing database.
     conversation_id = save_conversation(
         user_message=message,
         bot_response=result["reply"],
@@ -62,10 +84,12 @@ def history():
     limit = request.args.get("limit", 20, type=int)
     limit = max(1, min(limit, 100))
 
+    conversations = get_conversations(limit)
+
     return jsonify({
         "success": True,
-        "count": len(get_conversations(limit)),
-        "history": get_conversations(limit)
+        "count": len(conversations),
+        "history": conversations
     })
 
 
